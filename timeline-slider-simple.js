@@ -71,7 +71,7 @@ class TimelineSliderSimple {
             .style('border-radius', '4px')
             .style('background-color', 'white')
             .style('cursor', 'pointer')
-            .text('Попередній')
+            .text('◀ Попередній')
             .on('click', () => this.previousMonth());
         
         this.monthDisplay = buttonsDiv
@@ -93,7 +93,7 @@ class TimelineSliderSimple {
             .style('border-radius', '4px')
             .style('background-color', 'white')
             .style('cursor', 'pointer')
-            .text('Наступний')
+            .text('Наступний ▶')
             .on('click', () => this.nextMonth());
         
         this.playButton = buttonsDiv
@@ -105,7 +105,7 @@ class TimelineSliderSimple {
             .style('color', 'white')
             .style('cursor', 'pointer')
             .style('font-weight', 'bold')
-            .text('▶')
+            .text('▶ Автопрогравання')
             .on('click', () => this.toggleAutoPlay());
         
         this.sliderDiv = controlsDiv
