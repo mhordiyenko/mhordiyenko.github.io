@@ -1,0 +1,507 @@
+:root {
+    /* Світла тема з теплими відтінками */
+    --primary-color: #e74c3c;
+    --primary-light: #ec7063;
+    --primary-dark: #c0392b;
+    --secondary-color: #f39c12;
+    --accent-color: #3498db;
+    --success-color: #27ae60;
+    --warning-color: #f1c40f;
+    
+    /* Світлі фонові кольори */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-accent: #fff5f0;
+    
+    /* Текстові кольори */
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --text-muted: #95a5a6;
+    --text-light: #bdc3c7;
+    
+    /* Тіні та радіуси */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+    --shadow-xl: 0 12px 24px rgba(0,0,0,0.15);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    
+    /* Відступи та розміри */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    
+    /* Breakpoints */
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large: 1400px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-secondary) 100%);
+    min-height: 100vh;
+}
+
+/* Основний контейнер */
+.dashboard-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок */
+.dashboard-header {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
+}
+
+.dashboard-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Індикатор завантаження */
+.loading-container {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    margin: var(--spacing-xl) 0;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--bg-tertiary);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-md);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+/* Основний контент */
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Timeline секція */
+.timeline-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--bg-tertiary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Статистика */
+.statistics-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-title {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Візуалізації */
+.visualizations-container {
+    display: grid;
+    gap: var(--spacing-xl);
+}
+
+
+@media (min-width: 1024px) {
+    .visualizations-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "map heatmap";
+        align-items: start;
+        justify-items: stretch;
+    }
+    
+    .map-section {
+        grid-area: map;
+        max-width: 100%;
+    }
+    
+    .heatmap-section {
+        grid-area: heatmap;
+        max-width: 100%;
+    }
+    
+    .visualization-container {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 1023px) {
+    .visualizations-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.visualization-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--bg-tertiary);
+    width: 100%;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+.visualization-container {
+    background: var(--bg-accent);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed var(--bg-tertiary);
+    transition: all 0.3s ease;
+    margin-bottom: var(--spacing-lg);
+}
+
+.visualization-container:hover {
+    border-color: var(--primary-light);
+    background: var(--bg-secondary);
+}
+
+.map-container {
+    min-height: 500px;
+}
+
+.heatmap-container {
+    min-height: 400px;
+}
+
+ 
+@media (min-width: 1024px) {
+    .map-container,
+    .heatmap-container {
+        min-height: 450px;
+        max-height: 600px;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .map-container,
+    .heatmap-container {
+        min-height: 550px;
+        max-height: 750px;
+    }
+}
+
+/* Дуже великі екрани */
+@media (min-width: 1600px) {
+    .dashboard-container {
+        max-width: 2000px;
+        padding: var(--spacing-xl);
+    }
+    
+    .map-container,
+    .heatmap-container {
+        min-height: 600px;
+        max-height: 800px;
+    }
+}
+
+
+.info-box {
+    background: rgba(52, 152, 219, 0.1);
+    color: var(--text-secondary);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.info-box strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Timeline */
+.timeline-container {
+    background: var(--bg-accent);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--bg-tertiary);
+}
+
+/* Контрольна інформація */
+.controls-info {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #e67e22 100%);
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+
+/* Помилки */
+.error {
+    background: var(--bg-primary);
+    color: var(--primary-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--primary-light);
+    box-shadow: var(--shadow-md);
+    margin: var(--spacing-xl) 0;
+}
+
+.error strong {
+    color: var(--primary-dark);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: var(--spacing-md);
+    }
+    
+    .dashboard-header {
+        padding: var(--spacing-xl) var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .dashboard-title {
+        font-size: 2rem;
+    }
+    
+    .dashboard-subtitle {
+        font-size: 1rem;
+    }
+    
+    .timeline-section,
+    .visualization-section,
+    .statistics-section {
+        padding: var(--spacing-lg);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .stat-value {
+        font-size: 1.125rem;
+    }
+    
+    .visualization-container {
+        padding: var(--spacing-xs);
+        min-height: 300px;
+    }
+    
+    .map-container {
+        min-height: 350px;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .dashboard-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .visualization-container {
+        padding: var(--spacing-xs);
+        min-height: 250px;
+    }
+}
+
+/* Утиліти */
+.text-center { text-align: center; }
+.mb-0 { margin-bottom: 0; }
+.mt-0 { margin-top: 0; }
+
+/* Анімації появи */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Поліпшена типографіка */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Доступність */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Друк */
+@media print {
+    .sync-indicator,
+    .controls-info {
+        display: none;
+    }
+    
+    .dashboard-container {
+        padding: 0;
+    }
+    
+    .visualization-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

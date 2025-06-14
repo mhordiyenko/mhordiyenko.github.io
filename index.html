@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Повітряні тривоги України</title>
+    <link rel="stylesheet" href="air-alerts-dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">Повітряні тривоги України</h1>
+        </header>
+        
+        
+        <div id="loading" class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Завантаження даних та створення інтерактивної панелі...</div>
+        </div>
+        
+        
+        <div id="main-content" class="dashboard-content fade-in" style="display: none;">
+            
+            
+            <section class="timeline-section">
+                <div class="timeline-container">
+                    <div id="timeline-slider"></div>
+                </div>
+            </section>
+            
+            
+            <section class="statistics-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Поточний місяць</div>
+                        <div class="stat-value" id="currentMonth">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Областей з тривогами</div>
+                        <div class="stat-value" id="activeOblasts">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Загальна кількість тривог</div>
+                        <div class="stat-value" id="totalAlerts">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Найактивніша область</div>
+                        <div class="stat-value" id="mostActiveOblast">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Найактивніший день</div>
+                        <div class="stat-value" id="mostActiveDay">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Найактивніша година</div>
+                        <div class="stat-value" id="mostActiveHour">-</div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <div class="visualizations-container">
+                
+                <section class="visualization-section map-section">
+                    <h2 class="section-title">Географічний розподіл</h2>
+                    <div class="visualization-container map-container">
+                        <div id="ukraine-map"></div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Карта областей:</strong> Показує кількість повітряних тривог за обраний місяць.
+                    </div>
+                </section>
+                
+                
+                <section class="visualization-section heatmap-section">
+                    <h2 class="section-title">Часовий розподіл</h2>
+                    <div class="visualization-container heatmap-container">
+                        <div id="alerts-heatmap"></div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Heatmap за часом:</strong> Показує розподіл тривог за днями тижня та годинами доби. Кожна клітинка представляє кількість тривог у конкретний час.
+                    </div>
+                </section>
+            </div>
+            
+        </div>
+        
+        
+        <div id="error" style="display: none;" class="error"></div>
+    </div>
+
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    
+   
+    <script src="data-processor.js"></script>
+    <script src="oblast-mapping.js"></script>
+    <script src="ukraine-map.js"></script>
+    <script src="alerts-heatmap.js"></script>
+    <script src="timeline-slider-simple.js"></script>
+    
+    <script src="air-alerts-dashboard.js"></script>
+    
+</body>
+</html>
